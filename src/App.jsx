@@ -1,11 +1,20 @@
-import './App.css'
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import ExplorePage from './pages/ExplorePage';
 
-function App() {
+export default function App() {
+  const [trackedIds, setTrackedIds] = useState([]);
+
+  const handleToggleTrack = (dealID) => {
+    setTrackedIds((prev) =>
+      prev.includes(dealID) ? prev.filter((id) => id !== dealID) : [...prev, dealID]
+    );
+  };
+
   return (
-    <>
-      <h1>Hello World</h1>
-    </>
-  )
+    <div className="min-h-screen bg-[#0a0a0c] text-zinc-100 font-sans antialiased">
+      <Navbar trackedCount={trackedIds.length} />
+      <ExplorePage trackedIds={trackedIds} onToggleTrack={handleToggleTrack} />
+    </div>
+  );
 }
-
-export default App
