@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import GameCard from '../components/GameCard';
 
+// TODO: Tambahkan fitur filter & sort di atas tabel game
+
 export default function ExplorePage({ trackedIds, onToggleTrack }) {
   const [games, setGames] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
