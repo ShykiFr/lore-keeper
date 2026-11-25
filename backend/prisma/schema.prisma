@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model VaultGame {
+  id                 Int      @id @default(autoincrement())
+  dealId             String   @unique
+  title              String
+  thumb              String?
+  steamRatingPercent Int      @default(0)
+  steamRatingText    String?
+  steamRatingCount   Int      @default(0)
+  metacriticScore    Int      @default(0)
+  salePrice          Float
+  normalPrice        Float
+  dealRating         Float?
+  releaseYear        Int?
+  status             String   @default("BACKLOG") // BACKLOG | PLAYING | COMPLETED
+  notes              String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
